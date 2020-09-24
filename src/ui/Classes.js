@@ -37,6 +37,12 @@ const Classes = {
       m('.add-link', m('a.add[href=/enter]', {
         oncreate: m.route.link
       }, '+ Add Class')),
+      m('.add-link', m('a.add[href=/classImport]', {
+        oncreate: m.route.link
+      }, '+ Import Classes From Old Client')),
+      m('.add-link', m('a.add[href=/classExport]', {
+        oncreate: m.route.link
+      }, '- Export Classes')),
       m('ul.class-list#class-list', Object.keys(
         vnode.attrs.cookieManager.get('courses', {})).map(id => m('li', [
         m('a.course-link', {
