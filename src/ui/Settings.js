@@ -36,7 +36,7 @@ const Settings = {
   view: function (vnode) {
     document.title = 'Settings'
     return [
-      m('.meta', {content: {width=device-width, initial-scale=1.0}}),
+      m('.meta', {name: {viewport}, content: {width=device-width, initial-scale=1.0}}),
       m('.header', m('h1', 'Settings')),
       m('.settings-section', [
         m('.desc', [
