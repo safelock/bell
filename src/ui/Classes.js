@@ -27,6 +27,28 @@ var deleteClass = function (id, cookieManager) {
   cookieManager.set('courses', courses)
 }
 
+var importAllClass = function (cookieManager) {
+  var entry = prompt("Please paste your exported schedule. Only schedules exported via this tool will be accepted.")
+  if (entry == null || entry == "") {
+    alert("Invalid Entry. Doing Nothing.")
+  }
+  
+  // Insert some validation action shit here.
+  // This block is here as a TODO because idk what exportAllClass will give atm.
+  // Probably will be updated during October.
+  // End Validation Action Shit.
+  
+  // Purge Old Class Layout, Since we are importing a fresh schedule.
+  cookieManager.remove('courses')
+  
+  cookieManager.set('courses', courses)
+}
+
+var exportAllClass = function (cookieManager) {
+  var aa = cookieManager.get('courses', {});
+  var trash = prompt("Please share the text below to share this schedule!", aa);
+}
+  
 const Classes = {
   oninit: function (vnode) {
     sourceManager.source = 'custom'
@@ -37,11 +59,11 @@ const Classes = {
       m('.add-link', m('a.add[href=/enter]', {
         oncreate: m.route.link
       }, '+ Add Class')),
-      m('.add-link', m('a.add[href=/classImport]', {
-        oncreate: m.route.link
+      m('.add-link', m('a.add[href=javascript:void(0);]', {
+        onclick: () => importAllClass(vnode.attrs.cookieManager)
       }, '+ Import Classes From Old Client')),
-      m('.add-link', m('a.add[href=/classExport]', {
-        oncreate: m.route.link
+      m('.add-link', m('a.add[href=javascript:void(0);]', {
+        onclick: () => exportAllClass(vnode.attrs.cookieManager)
       }, '- Export Classes')),
       m('ul.class-list#class-list', Object.keys(
         vnode.attrs.cookieManager.get('courses', {})).map(id => m('li', [
